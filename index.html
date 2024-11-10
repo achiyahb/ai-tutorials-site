@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מדריכי AI</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ff 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            padding: 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.9), rgba(255,255,255,1));
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .icon-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        .icon-container i {
+            color: white;
+            width: 24px;
+            height: 24px;
+        }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .card-description {
+            color: #4a5568;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            position: relative;
+            padding-right: 1rem;
+        }
+
+        .card-description::before {
+            content: '→';
+            position: absolute;
+            right: 0;
+            color: #8b5cf6;
+        }
+
+        /* מדיה קווארי לתצוגה במובייל */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* אנימציית גלים ברקע */
+        .wave {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%234f46e5' fill-opacity='0.1' d='M0,32L48,53.3C96,75,192,117,288,122.7C384,128,480,96,576,85.3C672,75,768,85,864,106.7C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-size: 1440px 100px;
+            animation: wave 10s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes wave {
+            0% {
+                background-position-x: 0;
+            }
+            100% {
+                background-position-x: 1440px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wave"></div>
+<div class="container">
+    <h1>מדריכי שימוש במערכות AI 🤖</h1>
+    <div class="grid">
+        <!-- ChatGPT -->
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XhpnPX6ViHw"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i data-lucide="message-square"></i>
+                    </div>
+                    <h2 class="card-title">מדריך ChatGPT</h2>
+                </div>
+                <p class="card-description">למד איך להשתמש ב-ChatGPT ביעילות מרבית</p>
+            </div>
+        </div>
+
+        <!-- Claude -->
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XhpnPX6ViHw"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i data-lucide="brain"></i>
+                    </div>
+                    <h2 class="card-title">מדריך Claude</h2>
+                </div>
+                <p class="card-description">גלה את היכולות המתקדמות של Claude</p>
+            </div>
+        </div>
+
+        <!-- Midjourney -->
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XhpnPX6ViHw"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i data-lucide="sparkles"></i>
+                    </div>
+                    <h2 class="card-title">מדריך Midjourney</h2>
+                </div>
+                <p class="card-description">צור אמנות מדהימה עם Midjourney</p>
+            </div>
+        </div>
+
+        <!-- DALL-E -->
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XhpnPX6ViHw"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i data-lucide="image"></i>
+                    </div>
+                    <h2 class="card-title">מדריך DALL-E</h2>
+                </div>
+                <p class="card-description">יצירת תמונות מרהיבות עם DALL-E</p>
+            </div>
+        </div>
+
+        <!-- Stable Diffusion -->
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XhpnPX6ViHw"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i data-lucide="palette"></i>
+                    </div>
+                    <h2 class="card-title">מדריך Stable Diffusion</h2>
+                </div>
+                <p class="card-description">למד להשתמש ב-Stable Diffusion</p>
+            </div>
+        </div>
+
+        <!-- Bard -->
+        <div class="card">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/XhpnPX6ViHw"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+            </div>
+            <div class="card-content">
+                <div class="card-header">
+                    <div class="icon-container">
+                        <i data-lucide="bot"></i>
+                    </div>
+                    <h2 class="card-title">מדריך Bard</h2>
+                </div>
+                <p class="card-description">גלה את האפשרויות של Bard מבית Google</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+</script>
+</body>
+</html>
